@@ -1,0 +1,12 @@
+<http://myblog/>
+  <rdf:title> "My Blog";
+  <blog:articleList> <http://myblog/articles/latest>;
+  <blog:navigation>
+    <http://myblog/page/about-me>,
+    <http://myblog/page/imprint> .
+
+<http://myblog/page/about-me>
+  <rdf:title> "About me"@en .
+
+<http://myblog/page/imprint>
+  <rdf:title> "Imprint"@en .

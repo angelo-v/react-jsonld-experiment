@@ -1,0 +1,44 @@
+[
+  {
+    "@id": "http://myblog/",
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#title": [
+      {
+        "@value": "My Blog"
+      }
+    ],
+    "blog:articleList": [
+      {
+        "@id": "http://myblog/articles/latest"
+      }
+    ],
+    "blog:navigation": [
+      {
+        "@id": "http://myblog/page/about-me"
+      },
+      {
+        "@id": "http://myblog/page/imprint"
+      }
+    ]
+  },
+  {
+    "@id": "http://myblog/articles/latest"
+  },
+  {
+    "@id": "http://myblog/page/about-me",
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#title": [
+      {
+        "@value": "About me",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://myblog/page/imprint",
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#title": [
+      {
+        "@value": "Imprint",
+        "@language": "en"
+      }
+    ]
+  }
+]

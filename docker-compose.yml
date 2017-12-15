@@ -1,0 +1,22 @@
+version: '3'
+services:
+  client:
+    build: .
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules/
+  server:
+    image: rodolpheche/wiremock
+    volumes:
+      - ./wiremock:/home/wiremock
+    ports:
+      - 8080:8080
+  proxy:
+    image: nginx
+    depends_on:
+      - client
+      - server
+    volumes:
+      - ./docker/proxy.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "80:80"

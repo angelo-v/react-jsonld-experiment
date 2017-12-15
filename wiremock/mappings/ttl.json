@@ -1,0 +1,18 @@
+{
+  "request": {
+    "urlPath": "/",
+    "method": "GET",
+    "headers" : {
+      "Accept": {
+        "contains": "turtle"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "text/turtle"
+    },
+    "bodyFileName": "root.ttl"
+  }
+}
