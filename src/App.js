@@ -23,6 +23,8 @@ function resource(graph, uri) {
 
 const NavItem = (props) => <li><a href={props["@id"]}>{props.title["@value"]}</a></li>;
 
+const ArticleList = ({ uri }) => <div>TODO: fetch <a href={uri}>{uri}</a> automatically</div>;
+
 class App extends Component {
 
     componentDidMount() {
@@ -54,6 +56,7 @@ class App extends Component {
                             (nav) => <NavItem key={nav} {...resource(graph, nav)} />
                         )}
                     </ul>
+                    <ArticleList uri={self.articleList}/>
                 </div>
             </div>
         );
