@@ -1,12 +1,6 @@
-<http://myblog/>
-  <rdf:title> "My Blog";
-  <blog:articleList> <http://myblog/articles/latest>;
-  <blog:navigation>
-    <http://myblog/page/about-me>,
-    <http://myblog/page/imprint> .
-
-<http://myblog/page/about-me>
-  <rdf:title> "About me"@en .
-
-<http://myblog/page/imprint>
-  <rdf:title> "Imprint"@en .
+<http://localhost/> <http://schema.example/blog/articleList> <http://localhost/articles/latest> .
+<http://localhost/> <http://schema.example/blog/navigation> <http://localhost/page/about-me> .
+<http://localhost/> <http://schema.example/blog/navigation> <http://localhost/page/imprint> .
+<http://localhost/> <http://www.w3.org/1999/02/22-rdf-syntax-ns#title> "My Blog" .
+<http://localhost/page/about-me> <http://www.w3.org/1999/02/22-rdf-syntax-ns#title> "About me"@en .
+<http://localhost/page/imprint> <http://www.w3.org/1999/02/22-rdf-syntax-ns#title> "Imprint"@en .

@@ -1,44 +1,31 @@
-[
-  {
-    "@id": "http://myblog/",
-    "http://www.w3.org/1999/02/22-rdf-syntax-ns#title": [
-      {
-        "@value": "My Blog"
-      }
-    ],
-    "blog:articleList": [
-      {
-        "@id": "http://myblog/articles/latest"
-      }
-    ],
-    "blog:navigation": [
-      {
-        "@id": "http://myblog/page/about-me"
-      },
-      {
-        "@id": "http://myblog/page/imprint"
-      }
-    ]
+{
+  "@context": {
+    "rdf": {"@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#"},
+    "blog": {"@id": "http://schema.example/blog/"}
   },
-  {
-    "@id": "http://myblog/articles/latest"
-  },
-  {
-    "@id": "http://myblog/page/about-me",
-    "http://www.w3.org/1999/02/22-rdf-syntax-ns#title": [
-      {
-        "@value": "About me",
-        "@language": "en"
+  "@graph": [
+    {
+      "@id": "http://localhost/",
+      "blog:articleList": { "@id": "http://localhost/articles/latest" },
+      "blog:navigation": [
+        { "@id": "http://localhost/page/about-me" },
+        { "@id": "http://localhost/page/imprint" }
+      ],
+      "rdf:title": "My Blog"
+    },
+    {
+      "@id": "http://localhost/page/about-me",
+      "rdf:title": {
+        "@language": "en",
+        "@value": "About me"
       }
-    ]
-  },
-  {
-    "@id": "http://myblog/page/imprint",
-    "http://www.w3.org/1999/02/22-rdf-syntax-ns#title": [
-      {
-        "@value": "Imprint",
-        "@language": "en"
+    },
+    {
+      "@id": "http://localhost/page/imprint",
+      "rdf:title": {
+        "@language": "en",
+        "@value": "Imprint"
       }
-    ]
-  }
-]
+    }
+  ]
+}
