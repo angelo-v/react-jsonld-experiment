@@ -3,6 +3,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
+import { withRouter } from 'react-router-dom';
+
 import logo from './logo.svg';
 import './App.css';
 
@@ -13,7 +15,12 @@ import { Article }  from './articles';
 class App extends Component {
 
     componentDidMount() {
+        console.log('app did mount, fetch', location.href);
         this.props.fetchResource(location.href);
+        this.props.history.listen((location, action) => {
+            console.log('location change, fetch', window.location.href, location.pathname);
+            this.props.fetchResource(location.pathname);
+        });
     }
 
     render() {
@@ -36,9 +43,13 @@ class App extends Component {
     }
 }
 
-export default connect(state => {
-    const self = state["@graph"].find(res => res["@id"] === location.href);
-    return self ? {
-        ...self
-    } : { loading: true }
-}, { fetchResource })(App);
+export default connect((state) => {
+        const self = state["@graph"].find(res => res["@id"] === location.href);
+        return self ? {
+            ...self
+        } : { loading: true }
+    },
+    { fetchResource },
+    null,
+    { pure: false }
+)(withRouter(App));

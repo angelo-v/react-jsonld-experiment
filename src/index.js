@@ -10,6 +10,19 @@ import thunk from 'redux-thunk';
 
 import reducer from './resources';
 
+import { BrowserRouter } from 'react-router-dom'
+
+
+// using ES6 modules
+import createHistory from 'history/createBrowserHistory'
+const history = createHistory();
+
+const unlisten = history.listen((location, action) => {
+    // location is an object like window.location
+    console.log(action, location.pathname, location.state)
+});
+
+
 const composeEnhancers =
     typeof window === 'object' &&
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
@@ -25,7 +38,9 @@ const store = createStore(reducer, initialState, composeEnhancers(applyMiddlewar
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <BrowserRouter>
+            <App history={history}/>
+        </BrowserRouter>
     </Provider>,
     document.getElementById('root')
 );
