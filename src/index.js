@@ -17,7 +17,11 @@ const composeEnhancers =
             // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
         }) : compose;
 
-const store = createStore(reducer, {}, composeEnhancers(applyMiddleware(thunk)));
+const initialState = {
+    ['@graph']: []
+};
+
+const store = createStore(reducer, initialState, composeEnhancers(applyMiddleware(thunk)));
 
 ReactDOM.render(
     <Provider store={store}>
