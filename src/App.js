@@ -8,8 +8,7 @@ import './App.css';
 import { NavItem } from './navigation';
 
 import { fetchResource } from './resources'
-
-const ArticleList = ({ uri }) => <div>TODO: fetch <a href={uri}>{uri}</a> automatically</div>;
+import { ArticleList } from './articles'
 
 class App extends Component {
 
@@ -38,7 +37,6 @@ class App extends Component {
                             <ArticleList uri={this.props.articleList} />
                         </div>)
                 }
-
             </div>
         );
     }

@@ -1,9 +1,12 @@
-/* eslint no-restricted-globals: ["off", "location"] */
-
 import * as jsonld from 'jsonld';
 
 const context = {
+    "@language": "en",
     "title": "http://www.w3.org/1999/02/22-rdf-syntax-ns#title",
+    "content": {
+        "@id": "http://schema.example/list#content",
+        "@type": "@id"
+    },
     "articleList": {
         "@id": "http://schema.example/blog/articleList",
         "@type": "@id"
@@ -11,6 +14,9 @@ const context = {
     "navigation": {
         "@id": "http://schema.example/blog/navigation",
         "@type": "@id"
+    },
+    "ArticleList": {
+        "@id": "http://schema.example/blog/ArticleList"
     }
 };
 
@@ -45,7 +51,7 @@ export function resourceSuccess(uri, data) {
 export function fetchResource(uri) {
     return (dispatch) => {
         dispatch(resourceIsLoading(uri));
-        const request = new Request(location.href, {
+        const request = new Request(uri, {
             headers: new Headers({
                 'Accept': 'application/json'
             })
@@ -60,14 +66,14 @@ export function fetchResource(uri) {
 }
 
 
-
-
 export default (state, action) => {
     switch (action.type) {
         case 'RESOURCE_SUCCEEDED':
             return {
-                ...state,
-                ...action.payload
+                ["@graph"]: [
+                    ...state["@graph"],
+                    ...action.payload["@graph"]
+                ]
             };
         default:
             return state

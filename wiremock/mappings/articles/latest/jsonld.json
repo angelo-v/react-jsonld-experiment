@@ -1,0 +1,18 @@
+{
+  "request": {
+    "urlPath": "/articles/latest",
+    "method": "GET",
+    "headers" : {
+      "Accept": {
+        "contains": "json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json+ld"
+    },
+    "bodyFileName": "articles/latest.json"
+  }
+}

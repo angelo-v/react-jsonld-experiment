@@ -1,0 +1,43 @@
+{
+  "@context": {
+    "@language": "en",
+    "rdf": {
+      "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    },
+    "blog": {
+      "@id": "http://schema.example/blog/"
+    },
+    "list": {
+      "@id": "http://schema.example/list#"
+    }
+  },
+  "@graph": [
+    {
+      "@id": "http://localhost/articles/latest",
+      "@type": "blog:ArticleList",
+      "rdf:title": "Latest Articles",
+      "list:content": [
+        {
+          "@id": "http://localhost/2017/05/01/hello-world"
+        },
+        {
+          "@id": "http://localhost/2017/05/13/how-to-link"
+        }
+      ]
+    },
+    {
+      "@id": "http://localhost/2017/05/01/hello-world",
+      "rdf:title": {
+        "@language": "en",
+        "@value": "Hello World"
+      }
+    },
+    {
+      "@id": "http://localhost/2017/05/13/how-to-link",
+      "rdf:title": {
+        "@language": "en",
+        "@value": "How to link data"
+      }
+    }
+  ]
+}
