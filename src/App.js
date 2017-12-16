@@ -1,7 +1,11 @@
 /* eslint no-restricted-globals: ["off", "location"] */
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+
 import logo from './logo.svg';
 import './App.css';
+
+import { fetchResource } from './resources'
 
 import * as jsonld from 'jsonld';
 
@@ -28,7 +32,8 @@ const ArticleList = ({ uri }) => <div>TODO: fetch <a href={uri}>{uri}</a> automa
 class App extends Component {
 
     componentDidMount() {
-        console.log('fetch', location);
+        this.props.fetchResource(location.href);
+        // TODO: move fetching to middleware
         var request = new Request(location.href, {
             headers: new Headers({
                 'Accept': 'application/json'
@@ -40,7 +45,7 @@ class App extends Component {
     }
 
     render() {
-        if (!this.state) return null;
+        if (!this.state) return <div>Loading...</div>;
         const graph = this.state["@graph"];
         const self = this.state["@graph"][0];
         return (
@@ -63,4 +68,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default connect(state => state, { fetchResource })(App);
