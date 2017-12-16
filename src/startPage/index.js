@@ -4,7 +4,7 @@ import { NavItem } from "../navigation";
 import { ArticleList } from "../articles";
 
 
-export default (props) => (<div className="App-intro">
+export default (props) => (<div>
     <ul>
         {props.navigation.map(
             (nav) => <NavItem key={nav} uri={nav} />

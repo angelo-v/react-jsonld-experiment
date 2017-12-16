@@ -31,7 +31,6 @@ const composeEnhancers =
         }) : compose;
 
 const initialState = {
-    ['@graph']: []
 };
 
 const store = createStore(reducer, initialState, composeEnhancers(applyMiddleware(thunk)));

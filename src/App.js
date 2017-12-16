@@ -12,6 +12,8 @@ import { fetchResource } from './resources'
 import StartPage  from './startPage';
 import { Article }  from './articles';
 
+import Spinner from 'react-spinkit';
+
 class App extends Component {
 
     componentDidMount() {
@@ -28,16 +30,17 @@ class App extends Component {
             <div className="App">
                 <header className="App-header">
                     <img src={logo} className="App-logo" alt="logo" />
-                    <h1 className="App-title">Welcome to {this.props.title}</h1>
+                    <h1 className="App-title">{this.props.title}</h1>
 
                 </header>
-
-                {
-                    this.props.loading ?
-                        "Loading..." :
-                        (this.props["@type"] === "type:StartPage" ? <StartPage {...this.props} /> :
-                            <Article {...this.props} />)
-                }
+                <div className="App-intro">
+                    {
+                        this.props.loading ?
+                            <Spinner /> :
+                            (this.props["@type"] === "type:StartPage" ? <StartPage {...this.props} /> :
+                                <Article {...this.props} />)
+                    }
+                </div>
             </div>
         );
     }

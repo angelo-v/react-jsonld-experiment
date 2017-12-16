@@ -5,6 +5,8 @@ import { fetchResource } from '../resources'
 
 import ArticlePreview from './ArticlePreview';
 
+import Spinner from 'react-spinkit';
+
 class ArticleList extends Component {
 
     componentDidMount() {
@@ -17,7 +19,7 @@ class ArticleList extends Component {
         return <div>
             <h1>{this.props.title}</h1>
             {this.props.loading ? (
-            <div>Loading <a href={this.props.uri}>{this.props.uri}</a> automatically</div>
+                <Spinner />
         ) : (
             <div>
                 {this.props.content.map(uri => <ArticlePreview key={uri} uri={uri} />)}

@@ -2,7 +2,10 @@ import React  from 'react';
 import { connect } from 'react-redux'
 import { Link } from '../lib';
 
-const AuthorMark = ({ loading, uri, name, picture }) => loading ? "LOADING AUTHOR" : <div>
+import Spinner from 'react-spinkit';
+
+const AuthorMark = ({ loading, uri, name, picture }) => loading ? <Spinner />
+    : <div>
     <img width={100} src={picture} />
     <em><Link to={uri}>{name}</Link></em>
 </div>;
