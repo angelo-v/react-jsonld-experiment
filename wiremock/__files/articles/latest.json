@@ -30,14 +30,16 @@
       "rdf:title": {
         "@language": "en",
         "@value": "Hello World"
-      }
+      },
+      "rdf:description": "Welcome to my new blog, enjoy it."
     },
     {
       "@id": "http://localhost/2017/05/13/how-to-link",
       "rdf:title": {
         "@language": "en",
         "@value": "How to link data"
-      }
+      },
+      "rdf:description": "Use JSON-LD and follow the links in the data."
     }
   ]
 }

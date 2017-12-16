@@ -3,6 +3,7 @@ import * as jsonld from 'jsonld';
 const context = {
     "@language": "en",
     "title": "http://www.w3.org/1999/02/22-rdf-syntax-ns#title",
+    "description": "http://www.w3.org/1999/02/22-rdf-syntax-ns#description",
     "content": {
         "@id": "http://schema.example/list#content",
         "@type": "@id"
