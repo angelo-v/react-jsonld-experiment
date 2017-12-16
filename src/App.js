@@ -5,10 +5,10 @@ import { connect } from 'react-redux'
 
 import logo from './logo.svg';
 import './App.css';
-import { NavItem } from './navigation';
 
 import { fetchResource } from './resources'
-import { ArticleList } from './articles'
+import StartPage  from './startPage';
+import { Article }  from './articles';
 
 class App extends Component {
 
@@ -28,14 +28,8 @@ class App extends Component {
                 {
                     this.props.loading ?
                         "Loading..." :
-                        (<div className="App-intro">
-                            <ul>
-                                {this.props.navigation.map(
-                                    (nav) => <NavItem key={nav} uri={nav} />
-                                )}
-                            </ul>
-                            <ArticleList uri={this.props.articleList} />
-                        </div>)
+                        (this.props["@type"] === "type:StartPage" ? <StartPage {...this.props} /> :
+                            <Article {...this.props} />)
                 }
             </div>
         );

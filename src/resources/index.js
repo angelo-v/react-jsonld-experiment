@@ -16,9 +16,15 @@ const context = {
         "@id": "http://schema.example/blog/navigation",
         "@type": "@id"
     },
-    "ArticleList": {
-        "@id": "http://schema.example/blog/ArticleList"
-    }
+    "author": {
+        "@id": "http://schema.example/blog/author",
+        "@type": "@id"
+    },
+    "type": {
+        "@id": "http://schema.example/blog/type"
+    },
+    "name": "http://xmlns.com/foaf/0.1/name",
+    "picture": {"@id": "http://xmlns.com/foaf/0.1/picture", "@type": "@id"}
 };
 
 

@@ -20,7 +20,7 @@ class ArticleList extends Component {
             <div>Loading <a href={this.props.uri}>{this.props.uri}</a> automatically</div>
         ) : (
             <div>
-                {this.props.content.map(uri => <ArticlePreview uri={uri} />)}
+                {this.props.content.map(uri => <ArticlePreview key={uri} uri={uri} />)}
             </div>
         )}
         </div>

@@ -1,3 +1,4 @@
 import ArticleList from './ArticleList';
+import Article from './Article';
 
-export { ArticleList }
+export { ArticleList, Article }
