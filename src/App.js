@@ -44,7 +44,7 @@ class App extends Component {
 }
 
 export default connect((state) => {
-        const self = state["@graph"].find(res => res["@id"] === location.href);
+        const self = state[location.href];
         return self ? {
             ...self
         } : { loading: true }

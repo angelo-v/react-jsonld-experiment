@@ -1,14 +1,14 @@
 import React  from 'react';
 import { connect } from 'react-redux'
+import { Link } from '../lib';
 
-
-const AuthorMark = ({ uri, name, picture }) => <div>
+const AuthorMark = ({ loading, uri, name, picture }) => loading ? "LOADING AUTHOR" : <div>
     <img width={100} src={picture} />
-    <em><a href={uri}>{name}</a></em>
+    <em><Link to={uri}>{name}</Link></em>
 </div>;
 
 export default connect((state, ownProps) => {
-    const self = state["@graph"].find(res => res["@id"] === ownProps.uri);
+    const self = state[ownProps.uri];
     return self ? {
         ...self
     } : { loading: true }

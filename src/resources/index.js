@@ -1,5 +1,7 @@
 import * as jsonld from 'jsonld';
 
+import reduceGraph from './reduceGraph';
+
 const context = {
     "@language": "en",
     "title": "http://www.w3.org/1999/02/22-rdf-syntax-ns#title",
@@ -24,7 +26,7 @@ const context = {
         "@id": "http://schema.example/blog/type"
     },
     "name": "http://xmlns.com/foaf/0.1/name",
-    "picture": {"@id": "http://xmlns.com/foaf/0.1/picture", "@type": "@id"}
+    "picture": { "@id": "http://xmlns.com/foaf/0.1/picture", "@type": "@id" }
 };
 
 
@@ -68,7 +70,7 @@ export function fetchResource(uri) {
             .then(json => jsonld.compact(
                 json,
                 context,
-                (err, compacted) => err ? dispatch(resourceFailed(uri, err)) : dispatch(resourceSuccess(uri, compacted))));
+                (err, compacted) => err ? dispatch(resourceFailed(uri, err)) : dispatch(resourceSuccess(uri, reduceGraph(compacted["@graph"])))));
     };
 }
 
@@ -77,10 +79,8 @@ export default (state, action) => {
     switch (action.type) {
         case 'RESOURCE_SUCCEEDED':
             return {
-                ["@graph"]: [
-                    ...state["@graph"],
-                    ...action.payload["@graph"]
-                ]
+                ...state,
+                ...action.payload
             };
         default:
             return state

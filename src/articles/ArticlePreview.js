@@ -10,7 +10,7 @@ const ArticlePreview = ({ uri, title, description }) => <div>
 </div>;
 
 export default connect((state, ownProps) => {
-    const self = state["@graph"].find(res => res["@id"] === ownProps.uri);
+    const self = state[ownProps.uri];
     return self ? {
         ...self
     } : { loading: true }
