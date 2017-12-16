@@ -1,4 +1,5 @@
 /* eslint no-restricted-globals: ["off", "location"] */
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
@@ -7,19 +8,7 @@ import './App.css';
 
 import { fetchResource } from './resources'
 
-import * as jsonld from 'jsonld';
 
-const context = {
-    "title": "http://www.w3.org/1999/02/22-rdf-syntax-ns#title",
-    "articleList": {
-        "@id": "http://schema.example/blog/articleList",
-        "@type": "@id"
-    },
-    "navigation": {
-        "@id": "http://schema.example/blog/navigation",
-        "@type": "@id"
-    }
-};
 
 function resource(graph, uri) {
     return graph.find(res => res["@id"] === uri)
@@ -33,21 +22,12 @@ class App extends Component {
 
     componentDidMount() {
         this.props.fetchResource(location.href);
-        // TODO: move fetching to middleware
-        var request = new Request(location.href, {
-            headers: new Headers({
-                'Accept': 'application/json'
-            })
-        });
-        fetch(request)
-            .then(response => response.json())
-            .then(json => jsonld.compact(json, context, (err, compacted) => this.setState(compacted)))
     }
 
     render() {
-        if (!this.state) return <div>Loading...</div>;
-        const graph = this.state["@graph"];
-        const self = this.state["@graph"][0];
+        const graph = this.props["@graph"];
+        if (!graph) return <div>Loading...</div>;
+        const self = graph[0];
         return (
             <div className="App">
                 <header className="App-header">
