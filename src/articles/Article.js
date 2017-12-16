@@ -1,7 +1,8 @@
-import React  from 'react';
-import { connect } from 'react-redux'
+import React from "react";
 
-import AuthorMark from './AuthorMark';
+import AuthorMark from "./AuthorMark";
+
+import connectResource from "../lib";
 
 const Article = ({ uri, title, description, author }) => <div>
     <h2><a href={uri}>{title}</a></h2>
@@ -11,9 +12,4 @@ const Article = ({ uri, title, description, author }) => <div>
     <AuthorMark uri={author} />
 </div>;
 
-export default connect((state, ownProps) => {
-    const self = state[ownProps.uri];
-    return self ? {
-        ...self
-    } : { loading: true }
-})(Article);
+export default connectResource(Article);

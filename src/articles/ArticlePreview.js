@@ -1,6 +1,5 @@
-import React  from 'react';
-import { connect } from 'react-redux'
-import { Link } from '../lib';
+import React from "react";
+import connectResource, { Link } from "../lib";
 
 const ArticlePreview = ({ uri, title, description }) => <div>
     <h2><Link to={uri}>{title}</Link></h2>
@@ -9,9 +8,4 @@ const ArticlePreview = ({ uri, title, description }) => <div>
     </p>
 </div>;
 
-export default connect((state, ownProps) => {
-    const self = state[ownProps.uri];
-    return self ? {
-        ...self
-    } : { loading: true }
-})(ArticlePreview);
+export default connectResource(ArticlePreview);

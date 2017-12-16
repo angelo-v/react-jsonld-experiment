@@ -19,9 +19,9 @@ class App extends Component {
     componentDidMount() {
         console.log('app did mount, fetch', location.href);
         this.props.fetchResource(location.href);
-        this.props.history.listen((location, action) => {
-            console.log('location change, fetch', window.location.href, location.pathname);
-            this.props.fetchResource(location.pathname);
+        this.props.history.listen(() => {
+            console.log('location change, fetch', window.location.href);
+            this.props.fetchResource(window.location.href);
         });
     }
 
@@ -37,8 +37,8 @@ class App extends Component {
                     {
                         this.props.loading ?
                             <Spinner /> :
-                            (this.props["@type"] === "type:StartPage" ? <StartPage {...this.props} /> :
-                                <Article {...this.props} />)
+                            (this.props["@type"] === "type:StartPage" ? <StartPage uri={this.props["@id"]} {...this.props} /> :
+                                <Article uri={this.props["@id"]} {...this.props} />)
                     }
                 </div>
             </div>

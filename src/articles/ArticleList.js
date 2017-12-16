@@ -29,7 +29,6 @@ class ArticleList extends Component {
     }
 }
 
-
 export default connect((state, ownProps) => {
     const self = state[ownProps.uri];
     return self ? {
