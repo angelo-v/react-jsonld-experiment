@@ -23,7 +23,7 @@ const context = {
         "@type": "@id"
     },
     "type": {
-        "@id": "http://schema.example/blog/type"
+        "@id": "http://schema.example/blog/type/"
     },
     "name": "http://xmlns.com/foaf/0.1/name",
     "picture": { "@id": "http://xmlns.com/foaf/0.1/picture", "@type": "@id" }

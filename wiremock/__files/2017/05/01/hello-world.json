@@ -8,7 +8,7 @@
       "@id": "http://schema.example/blog/"
     },
     "type": {
-      "@id": "http://schema.example/blog/type"
+      "@id": "http://schema.example/blog/type/"
     },
     "list": {
       "@id": "http://schema.example/list#"

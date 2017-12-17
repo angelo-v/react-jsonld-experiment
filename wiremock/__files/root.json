@@ -4,7 +4,7 @@
     "rdf": {"@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#"},
     "blog": {"@id": "http://schema.example/blog/"},
     "type": {
-      "@id": "http://schema.example/blog/type"
+      "@id": "http://schema.example/blog/type/"
     }
   },
   "@graph": [

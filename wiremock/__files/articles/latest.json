@@ -9,12 +9,15 @@
     },
     "list": {
       "@id": "http://schema.example/list#"
+    },
+    "type": {
+      "@id": "http://schema.example/blog/type/"
     }
   },
   "@graph": [
     {
       "@id": "http://localhost/articles/latest",
-      "@type": "blog:ArticleList",
+      "@type": "type:ArticleList",
       "rdf:title": "Latest Articles",
       "list:content": [
         {
