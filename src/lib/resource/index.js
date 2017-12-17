@@ -1,21 +1,33 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Spinner from 'react-spinkit';
 
-export default (Component) => {
+import { fetchResource } from '../../resources'
 
-    const Resource = (props) => {
-        console.log("Resource", Component.name, props.uri);
-        return props.loading ? <Spinner />
-            : <Component {...props} />
-    };
+export default (WrappedComponent, options = { fetch: false }) => {
+
+    class Resource extends Component {
+
+        componentDidMount() {
+            if (options.fetch) {
+                console.log("eager fetching", this.props.uri);
+                this.props.fetchResource(this.props.uri);
+            }
+        }
+
+        render() {
+            console.log("Resource", WrappedComponent.name, this.props.uri);
+            return this.props.loading ? <Spinner />
+                : <WrappedComponent {...this.props} />
+        }
+    }
 
     return connect((state, ownProps) => {
         const self = state[ownProps.uri];
         return self ? {
             ...self
         } : { loading: true }
-    })(Resource);
+    }, { fetchResource })(Resource);
 
 }
