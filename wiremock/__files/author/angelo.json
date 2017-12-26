@@ -1,0 +1,31 @@
+{
+  "@context": {
+    "@language": "en",
+    "rdf": {
+      "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    },
+    "blog": {
+      "@id": "http://schema.example/blog/"
+    },
+    "type": {
+      "@id": "http://schema.example/blog/type"
+    },
+    "list": {
+      "@id": "http://schema.example/list#"
+    },
+    "foaf": {
+      "@id": "http://xmlns.com/foaf/0.1/"
+    }
+  },
+  "@graph": [
+    {
+      "@id": "http://localhost/author/angelo",
+      "@type": "foaf:Person",
+      "foaf:name": "Angelo Veltens",
+      "foaf:picture": {
+        "@id": "https://pbs.twimg.com/profile_images/838330724004560896/RfDTeRaj_400x400.jpg"
+      },
+      "rdf:description": "I am a blogger, blogging about stuff other blogs already blogged about."
+    }
+  ]
+}

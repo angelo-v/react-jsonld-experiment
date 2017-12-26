@@ -1,18 +1,31 @@
 /* eslint no-restricted-globals: ["off", "location"] */
 
-import React, { Component } from 'react';
-import { connect } from 'react-redux'
+import React, {Component} from 'react';
+import {connect} from 'react-redux'
 
-import { withRouter } from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 
 import logo from './logo.svg';
 import './App.css';
 
-import { fetchResource } from './resources'
-import StartPage  from './startPage';
-import { Article }  from './articles';
+import {fetchResource} from './resources'
+import StartPage from './startPage';
+import {Article} from './articles';
 
 import Spinner from 'react-spinkit';
+
+import { GenericTable } from './lib'
+
+const routing = (props) => {
+    switch (props["@type"]) {
+        case "type:StartPage":
+            return <StartPage uri={props["@id"]} {...props} />;
+        case "type:Article":
+            return <Article uri={props["@id"]} {...props} />;
+        default:
+            return <table>Unknown page type. {Object.keys(props).map(p => props[p] instanceof Object ? null : <tr><td>{p}</td>{ props[p]}</tr>)}</table>
+    }
+};
 
 class App extends Component {
 
@@ -29,16 +42,15 @@ class App extends Component {
         return (
             <div className="App">
                 <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo" />
+                    <img src={logo} className="App-logo" alt="logo"/>
                     <h1 className="App-title">{this.props.title}</h1>
 
                 </header>
                 <div className="App-intro">
                     {
                         this.props.loading ?
-                            <Spinner /> :
-                            (this.props["@type"] === "type:StartPage" ? <StartPage uri={this.props["@id"]} {...this.props} /> :
-                                <Article uri={this.props["@id"]} {...this.props} />)
+                            <Spinner/> : routing(this.props)
+
                     }
                 </div>
             </div>
@@ -46,13 +58,14 @@ class App extends Component {
     }
 }
 
+
 export default connect((state) => {
         const self = state[location.href];
         return self ? {
             ...self
-        } : { loading: true }
+        } : {loading: true}
     },
-    { fetchResource },
+    {fetchResource},
     null,
-    { pure: false }
+    {pure: false}
 )(withRouter(App));

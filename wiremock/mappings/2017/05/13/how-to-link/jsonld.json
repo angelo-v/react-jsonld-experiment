@@ -1,0 +1,18 @@
+{
+  "request": {
+    "urlPath": "/2017/05/13/how-to-link",
+    "method": "GET",
+    "headers" : {
+      "Accept": {
+        "contains": "json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json+ld"
+    },
+    "bodyFileName": "2017/05/13/how-to-link.json"
+  }
+}

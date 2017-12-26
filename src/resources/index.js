@@ -26,7 +26,10 @@ const context = {
         "@id": "http://schema.example/blog/type/"
     },
     "name": "http://xmlns.com/foaf/0.1/name",
-    "picture": { "@id": "http://xmlns.com/foaf/0.1/picture", "@type": "@id" }
+    "picture": { "@id": "http://xmlns.com/foaf/0.1/picture", "@type": "@id" },
+    "Person": {
+        "@id": "http://xmlns.com/foaf/0.1/Person"
+    },
 };
 
 
@@ -57,6 +60,14 @@ export function resourceSuccess(uri, data) {
     };
 }
 
+const getGraph = (compacted) => {
+    if (compacted["@graph"]) {
+        return compacted["@graph"]
+    }
+    const { "@context": context, ...resource } = compacted;
+    return [resource];
+}
+
 export function fetchResource(uri) {
     return (dispatch) => {
         dispatch(resourceIsLoading(uri));
@@ -70,7 +81,7 @@ export function fetchResource(uri) {
             .then(json => jsonld.compact(
                 json,
                 context,
-                (err, compacted) => err ? dispatch(resourceFailed(uri, err)) : dispatch(resourceSuccess(uri, reduceGraph(compacted["@graph"])))));
+                (err, compacted) => err ? dispatch(resourceFailed(uri, err)) : dispatch(resourceSuccess(uri, reduceGraph(getGraph(compacted))))));
     };
 }
 
