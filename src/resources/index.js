@@ -60,14 +60,6 @@ export function resourceSuccess(uri, data) {
     };
 }
 
-const getGraph = (compacted) => {
-    if (compacted["@graph"]) {
-        return compacted["@graph"]
-    }
-    const { "@context": context, ...resource } = compacted;
-    return [resource];
-}
-
 export function fetchResource(uri) {
     return (dispatch) => {
         dispatch(resourceIsLoading(uri));
@@ -78,10 +70,14 @@ export function fetchResource(uri) {
         });
         fetch(request)
             .then(response => response.json())
-            .then(json => jsonld.compact(
+            .then(json => jsonld.flatten(
                 json,
                 context,
-                (err, compacted) => err ? dispatch(resourceFailed(uri, err)) : dispatch(resourceSuccess(uri, reduceGraph(getGraph(compacted))))));
+                {}, // options
+                (err, flat) => err ?
+                    dispatch(resourceFailed(uri, err)) :
+                    dispatch(resourceSuccess(uri, reduceGraph(flat["@graph"])))
+            ));
     };
 }
 
