@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 
+import StartPage from './startPage';
+import {Article} from './articles';
 
 import logo from './logo.svg';
 import './App.css';
-import Page from './Page';
+import Router from './router';
 
 export default class App extends Component {
 
@@ -16,7 +18,10 @@ export default class App extends Component {
 
                 </header>
                 <div className="App-intro">
-                    <Page />
+                    <Router map={{
+                        "type:StartPage": StartPage,
+                        "type:Article": Article
+                    }} />
                 </div>
             </div>
         );

@@ -1,8 +1,6 @@
 /* eslint no-restricted-globals: ["off", "location"] */
 
-import {fetchResource} from './resources'
-import StartPage from './startPage';
-import {Article} from './articles';
+import {fetchResource} from '../resources'
 
 import Spinner from 'react-spinkit';
 import React, {Component} from 'react';
@@ -10,21 +8,7 @@ import {connect} from 'react-redux'
 
 import {withRouter} from 'react-router-dom';
 
-
-const routing = (props) => {
-    switch (props["@type"]) {
-        case "type:StartPage":
-            return <StartPage uri={props["@id"]} {...props} />;
-        case "type:Article":
-            return <Article uri={props["@id"]} {...props} />;
-        default:
-            return <table>Unknown page type. {Object.keys(props).map(p => props[p] instanceof Object ? null : <tr>
-                <td>{p}</td>
-                {props[p]}</tr>)}</table>
-    }
-};
-
-class Page extends Component {
+class Router extends Component {
 
     componentDidMount() {
         console.log('app did mount, fetch', location.href);
@@ -36,9 +20,13 @@ class Page extends Component {
     }
 
     render() {
+        const Page = this.props.map[this.props["@type"]];
+        const defaultTable = <table>Unknown page type. {Object.keys(this.props).map(p => this.props[p] instanceof Object ? null : <tr>
+            <td>{p}</td>
+            {this.props[p]}</tr>)}
+        </table>;
         return this.props.loading ?
-            <Spinner/> : routing(this.props)
-
+            <Spinner/> : (Page ? <Page uri={this.props["@id"]} {...this.props} /> : defaultTable);
     }
 
 }
@@ -52,4 +40,4 @@ export default connect((state) => {
     {fetchResource},
     null,
     {pure: false}
-)(withRouter(Page));
+)(withRouter(Router));
