@@ -1,36 +1,36 @@
 {
   "@context": {
+    "@vocab": "https://schema.org/",
     "@language": "en",
-    "rdf": {"@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#"},
-    "blog": {"@id": "http://schema.example/blog/"},
-    "type": {
-      "@id": "http://schema.example/blog/type/"
-    }
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "hydra": "http://www.w3.org/ns/hydra/core#",
+    "title": "hydra:title"
   },
-  "@graph": [
-    {
-      "@id": "http://localhost/",
-      "@type": "type:StartPage",
-      "blog:articleList": { "@id": "http://localhost/articles/latest" },
-      "blog:navigation": [
-        { "@id": "http://localhost/page/about-me" },
-        { "@id": "http://localhost/page/imprint" }
-      ],
-      "rdf:title": "My Blog"
-    },
-    {
-      "@id": "http://localhost/page/about-me",
-      "rdf:title": {
-        "@language": "en",
-        "@value": "About me"
+  "@id": "/",
+  "@type": "WebPage",
+  "about": {
+    "@id": "#blog",
+    "@type": "Blog",
+    "rdf:title": "My Blog"
+  },
+  "ex:articleList": {
+    "@id": "http://localhost/articles/latest"
+  },
+  "page:navigation": {
+    "@id": "#nav",
+    "@type": "ItemList",
+    "name": "Navigation",
+    "itemListElement": [
+      {
+        "@id": "/page/about-me",
+        "@type": "SiteNavigationElement",
+        "text": "About me"
+      },
+      {
+        "@id": "/2017/05/13/how-to-link",
+        "@type": "SiteNavigationElement",
+        "text": "Imprint"
       }
-    },
-    {
-      "@id": "http://localhost/page/imprint",
-      "rdf:title": {
-        "@language": "en",
-        "@value": "Imprint"
-      }
-    }
-  ]
+    ]
+  }
 }
